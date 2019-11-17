@@ -4,7 +4,7 @@
 
 ### Particle Jukebox 🎹
 
-`particlejukebox.ino` is a fully functioning demo for **[The Grove Starter Kit for Particle Mesh](https://store.particle.io/products/grove-starter-kit)**. It also demonstrates how to use [`Particle.function()`](https://docs.particle.io/reference/device-os/firmware/photon/#cloud-functions). Just *flash⚡️* this sketch to your Particle Argon and see how it works! 
+`particlejukebox.ino` is a fully functioning demo for **[The Grove Starter Kit for Particle Mesh](https://store.particle.io/products/grove-starter-kit)**. It also demonstrates how to use [`Particle.function()`](https://docs.particle.io/reference/device-os/firmware/photon/#cloud-functions). Just *⚡️flash⚡️* this sketch to your Particle Argon and see how it works! 
     
 #### Requirements:
 
@@ -15,9 +15,9 @@
     - Buzzer ~ plugged into grove shield `D4`
 - USB Cable & Internet! (Duh)
 
-#### Tunes 🎵 
+#### Tunes 🎶 
 
-After you have uploaded `particlejukebox.ino` code to your Particle Argon, in the console you will find "playTune" in the **Functions** section. Type in any of the following to listen.
+After you have uploaded `particlejukebox.ino` to your Particle Argon, in the console you will find "playTune" in the **Functions** section. Type in any of the following to listen.
 
 - Pokêmon
 - Kim Possible
