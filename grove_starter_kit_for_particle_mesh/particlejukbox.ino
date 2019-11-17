@@ -188,7 +188,7 @@ int playSesameStreet() {
     tune++; // next song
 }
 
-// The lyrics are dark af
+// Intro
 int playSmoothCriminal() {
     
     int smoothCriminal[] =    { a, a, a, a, g, a, b, b, a, b, c, c, c, c, b, g/2};
@@ -202,7 +202,7 @@ int playSmoothCriminal() {
     tune++; // next song
 }
 
-// "Just waiting for the movie to start..."
+// Just waiting for the movie to start...
 int playStarWars() {
     int starWars[] =    {g/2,g/2,g/2,c,g,f,e,d,c*2,g,f,e,d,c*2,g,f,e,f,d};
     int starWarsSeq[] = {  4,  4,  4,1,1,4,4,4,  1,1,4,4,4,  1,1,4,4,4,1};
@@ -280,7 +280,7 @@ int playThisTune() {
     
     for (int note = 0; note < X; note++) {
       int duration = 1000/melodySeq[note];
-      tone(BZZ, melody[note], duration); // Up or down an octave `melody[note]*2` or `melody[note]/2`
+      tone(BZZ, melody[note], duration);
       delay(duration * 1.30);
     }
     tune++;
