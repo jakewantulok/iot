@@ -4,7 +4,6 @@
 ////////////////// PARTICLE JUKEBOX //////////////////
 
 /*
-    
     This is a fully functioning demo for "The Grove Starter Kit for Particle Mesh"
     Just flash this to your Particle Argon and have fun!
     
@@ -14,20 +13,19 @@
     
     Requirements:
         - Claimed Particle Argon
-        - Grove shield for Particle Argon (with the argon in place)
-        - Grove Starter Kit for Particle Mesh
+        - Grove Starter Kit for Particle Mesh:
+            - Grove shield for Particle Argon (with the argon in place)
             - Button ~ plugged into grove shield (D2)
             - Buzzer ~ plugged into grove shield (D4)
         - USB Cable & Internet! (Duh)
 
     Note! Right now this is written assuming the button is plugged in.
-    When unplugged, you will soon hear a loop of of all the tunes.
+    When unplugged, you will soon hear each tune play in a continuous loop.
     
-    I highly recommend commenting out:
+    I highly recommend commenting out the following before unplugging your button:
         - #define BTN D2
         - pinMode(BTN, INPUT);
-        - Everything inside void loop()
-    
+        - Everything inside the void loop()
 */
 
 ////////////////// 🎹 //////////////////
@@ -50,7 +48,6 @@ int G = 3322.44;
 ////////////////// SETLIST //////////////////
 
 /*
-    
     Tune 0 = "Pokémon"
     Tune 1 = "Kim Possible"
     Tune 2 = "Power Rangers"
@@ -61,11 +58,61 @@ int G = 3322.44;
     Tune 7 = "Mario Bros"
     Tune 8 = "Legend of Zelda"
     Tune 9 = "Example Melody" (with comments)
-    
 */
 
-// Will play through each tune each time the button is pressed ~ will restart to the beginning.
-int tune = 0; // default 0
+int tune = 0; // default tune for first press
+
+// "PO - KE - MON!"
+int pokemon[] =    {d,f,g};
+int pokemonSeq[] = {8,8,8};
+
+// "Call me, beep me, if you wanna reach me..."
+int kimPossible[] =    {g,g, 0,A*2,g};
+int kimPossibleSeq[] = {6,6,12, 12,6};
+
+// It's mighty morphin time!
+int pwrRangers[] =    {e,e,d,e,0,g,e};
+int pwrRangersSeq[] = {4,4,8,8,8,4,1};
+
+// "LET ME TELL YOU HOW TO GET, HOW TO GET TO SESAME STREET"
+int sesameStreet[] =    {A*2,c,d,c,A*2,g,f,f,g,G,g,f,g,A*2,A*2};
+int sesameStreetSeq[] = {  8,8,4,4,  4,8,4,8,8,4,4,8,8,  8,  4};
+
+// No, this was NOT written by Alien Antfarm
+int smoothCriminal[] =    { a, a, a, a, g, a, b, b, a, b, c, c, c, c, b, g/2};
+int smoothCriminalSeq[] = {12,12,12,12,12,12,12, 3,12,12,12, 3,12,12,12,   3};
+
+// Just waiting for the movie to start...
+int starWars[] =    {g/2,g/2,g/2,c,g,f,e,d,c*2,g,f,e,d,c*2,g,f,e,f,d};
+int starWarsSeq[] = {  4,  4,  4,1,1,4,4,4,  1,1,4,4,4,  1,1,4,4,4,1};
+
+// "I HATE SNAKES"
+int indianaJones[] =    {d,D,f,A*2,d,f,D};
+int indianaJonesSeq[] = {4,8,8,  1,4,8,1};
+
+// We all know this one
+int mario[] =    {e,e,e,d,e,g,0,g/2};
+int marioSeq[] = {8,8,4,8,4,4,4,  4};
+
+// No, the green dude is NOT Zelda
+int legendOfZelda[] =    { a,e/2, 0,g/2, a, b, c, d, e, e, d, e, f, g,a*2,A*2,A*2,A*2,a*2,0,g,0,a*2,f,e}; 
+int legendOfZeldaSeq[] = { 6,  3,12, 12,12,12,12,12,12, 1,12,12,12,12, 12, 12,  1,  8,  8,8,8,0,  4,8,4};
+
+// I don't know how else to knock apparently
+int doorKnock[] =    {e, f, c,d,e,0,d,e};
+int doorKnockSeq[] = {8,16,16,8,8,8,8,8};
+
+////////////////// JUKEBOX //////////////////
+
+int jukebox(int melody [], int melodySeq [], int size) {
+    
+    for (int note = 0; note < size; note++) {
+      int duration = 1000/melodySeq[note];
+      tone(BZZ, melody[note], duration);
+      delay(duration * 1.30);
+    }
+    tune++; // next tune
+}
 
 ////////////////// SETUP //////////////////
 
@@ -80,210 +127,54 @@ void setup() {
 void loop() {
     if (digitalRead(BTN) == HIGH) {
         if (tune == 0) {
-            playPokemon();
+            jukebox(pokemon, pokemonSeq, 3);
         } else if (tune == 1) {
-            playKimPossible();
+            jukebox(kimPossible, kimPossibleSeq, 5);
         } else if (tune == 2) {
-            playPowerRangers();
+            jukebox(pwrRangers, pwrRangersSeq, 7);
         } else if (tune == 3) {
-            playSesameStreet();
+            jukebox(sesameStreet, sesameStreetSeq, 15);
         } else if (tune == 4) {
-            playSmoothCriminal();
+            jukebox(smoothCriminal, smoothCriminalSeq, 16);
         } else if (tune == 5) {
-            playStarWars();
+            jukebox(starWars, starWarsSeq, 19);
         } else if (tune == 6) {
-            playIndianaJones();
+            jukebox(indianaJones, indianaJones, 7);
         } else if (tune == 7) {
-            playMarioBros();
+            jukebox(mario, marioSeq, 8);
         } else if (tune == 8) {
-            playLegendOfZelda();
+            jukebox(legendOfZelda, legendOfZelda, 25);
         } else {
-            playExampleMelody();
+            jukebox(doorKnock, doorKnockSeq, 8);
+            tune = 0; // resets to the first tune
         }
     }
 }
 
 ////////////////// PARTICLE.FUNCTION //////////////////
 
-int playTune(String songTitle) {
-    if (songTitle == "pokemon" || songTitle == "Pokemon" || songTitle == "pokémon" || songTitle == "Pokémon" || songTitle == "Pocket Monsters" || songTitle == "0") {
-        playPokemon();
-    } else if (songTitle == "kimpossible" || songTitle == "Kimpossible" || songTitle == "impossible" || songTitle == "kim possible" || songTitle == "Kim Possible" || songTitle == "1") {
-        playKimPossible();
-    } else if (songTitle == "Power Rangers" || songTitle == "powerrangers" || songTitle == "power rangers" || songTitle == "mighty morphin time" ||songTitle == "2") {
-        playPowerRangers();
-    } else if (songTitle == "sesame street" || songTitle == "Sesame Street" || songTitle == "Sesame St" || songTitle == "123 Sesame Street" || songTitle == "3") {
-        playSesameStreet();
-    } else if (songTitle == "MJ" || songTitle == "Michael Jackson" || songTitle == "Smooth Criminal" || songTitle == "smooth sriminal" || songTitle == "4") {
-        playSmoothCriminal();
-    } else if (songTitle == "Star Wars" || songTitle == "star wars" || songTitle == "starwars" || songTitle == "pew pew" || songTitle == "5") {
-        playStarWars();
-    } else if (songTitle == "Indiana Jones" || songTitle == "i hate snakes" || songTitle == "Indie" || songTitle == "indiana jones" || songTitle == "6") {
-        playIndianaJones();
-    } else if (songTitle == "mario" || songTitle == "Mario" || songTitle == "Peach" || songTitle == "Bowser" || songTitle == "7") {
-        playMarioBros();
-    }  else if (songTitle == "Zelda" || songTitle == "Legend of Zelda" || songTitle == "Link" || songTitle == "Legend Of Zelda" || songTitle == "legend of zelda" || songTitle == "8") {
-        playLegendOfZelda();
+int playTune(String cmd) {
+    if (cmd == "pokemon" || cmd == "Pokemon" || cmd == "pokémon" || cmd == "Pokémon" || cmd == "Pocket Monsters" || cmd == "0") {
+        jukebox(pokemon, pokemonSeq, 3);
+    } else if (cmd == "kimpossible" || cmd == "Kimpossible" || cmd == "impossible" || cmd == "kim possible" || cmd == "Kim Possible" || cmd == "1") {
+        jukebox(kimPossible, kimPossibleSeq, 5);
+    } else if (cmd == "Power Rangers" || cmd == "powerrangers" || cmd == "power rangers" || cmd == "mighty morphin time" ||cmd == "2") {
+        jukebox(pwrRangers, pwrRangersSeq, 7);
+    } else if (cmd == "sesame street" || cmd == "Sesame Street" || cmd == "Sesame St" || cmd == "123 Sesame Street" || cmd == "3") {
+        jukebox(sesameStreet, sesameStreetSeq, 15);
+    } else if (cmd == "MJ" || cmd == "Michael Jackson" || cmd == "Smooth Criminal" || cmd == "smooth sriminal" || cmd == "4") {
+        jukebox(smoothCriminal, smoothCriminalSeq, 16);
+    } else if (cmd == "Star Wars" || cmd == "star wars" || cmd == "starwars" || cmd == "pew pew" || cmd == "5") {
+        jukebox(starWars, starWarsSeq, 19);
+    } else if (cmd == "Indiana Jones" || cmd == "i hate snakes" || cmd == "Indie" || cmd == "indiana jones" || cmd == "6") {
+        jukebox(indianaJones, indianaJonesSeq, 7);
+    } else if (cmd == "mario" || cmd == "Mario" || cmd == "Peach" || cmd == "Bowser" || cmd == "7") {
+        jukebox(mario, marioSeq, 8);
+    } else if (cmd == "Zelda" || cmd == "Legend of Zelda" || cmd == "Link" || cmd == "triforce" || cmd == "legend of zelda" || cmd == "8") {
+        jukebox(legendOfZelda, legendOfZeldaSeq, 25);
     } else {
-        playExampleMelody();
+        jukebox(doorKnock, doorKnockSeq, 8);
+        tune = 0; // resets to the first tune
     }
     return 1;
 }
-
-////////////////// TUNES //////////////////
-
-// "PO - KE - MON!"
-int playPokemon() {
-    
-    int pokemon[] =    {d,f,g};
-    int pokemonSeq[] = {8,8,8};
-
-    for (int note = 0; note < 3; note++) {
-      int duration = 1000/pokemonSeq[note];
-      tone(BZZ, pokemon[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// "BEE - BOOP, BEEBOOP!"
-int playKimPossible() {
-    
-    int kimpossible[] =    {g,g, 0,A*2,g};
-    int kimpossibleSeq[] = {6,6,12, 12,6};
-
-    for (int note = 0; note < 5; note++) {
-      int duration = 1000/kimpossibleSeq[note];
-      tone(BZZ, kimpossible[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// "GO GO - POW ER - RANG - ERS!"
-int playPowerRangers() {
-    
-    int powerRangers[] =    {e,e,d,e,0,g,e};
-    int powerRangersSeq[] = {4,4,8,8,8,4,1};
-
-    for (int note = 0; note < 7; note++) {
-      int duration = 1000/powerRangersSeq[note];
-      tone(BZZ, powerRangers[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// "LET ME TELL YOU HOW TO GET, HOW TO GET TO SESAME STREET"
-int playSesameStreet() {
-    
-    int sesameStreet[] =    {A*2,c,d,c,A*2,g,f,f,g,G,g,f,g,A*2,A*2};
-    int sesameStreetSeq[] = {  8,8,4,4,  4,8,4,8,8,4,4,8,8,  8,  4};
-    
-    for (int note = 0; note < 15; note++) {
-      int duration = 1000/sesameStreetSeq[note];
-      tone(BZZ, sesameStreet[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// Intro
-int playSmoothCriminal() {
-    
-    int smoothCriminal[] =    { a, a, a, a, g, a, b, b, a, b, c, c, c, c, b, g/2};
-    int smoothCriminalSeq[] = {12,12,12,12,12,12,12, 3,12,12,12, 3,12,12,12,   3};
-    
-    for (int note = 0; note < 16; note++) {
-      int duration = 1000/smoothCriminalSeq[note];
-      tone(BZZ, smoothCriminal[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// Just waiting for the movie to start...
-int playStarWars() {
-    int starWars[] =    {g/2,g/2,g/2,c,g,f,e,d,c*2,g,f,e,d,c*2,g,f,e,f,d};
-    int starWarsSeq[] = {  4,  4,  4,1,1,4,4,4,  1,1,4,4,4,  1,1,4,4,4,1};
-    
-    for (int note = 0; note < 19; note++) {
-      int duration = 1000/starWarsSeq[note];
-      tone(BZZ, starWars[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// "I HATE SNAKES"
-int playIndianaJones() {
-    
-    int indianaJones[] =    {d,D,f,A*2,d,f,D};
-    int indianaJonesSeq[] = {4,8,8,  1,4,8,1};
-    
-    for (int note = 0; note < 7; note++) {
-      int duration = 1000/indianaJonesSeq[note];
-      tone(BZZ, indianaJones[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// You know this one
-int playMarioBros() {
-    int mario[] =    {e,e,e,d,e,g,0,g/2};
-    int marioSeq[] = {8,8,4,8,4,4,4,  4};
-    
-    for (int note = 0; note < 8; note++) {
-      int duration = 1000/marioSeq[note];
-      tone(BZZ, mario[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// No, the green dude is NOT Zelda
-int playLegendOfZelda() {
-    
-    int zelda[] =    { a,e/2, 0,g/2, a, b, c, d, e, e, d, e, f, g,a*2,A*2,A*2,A*2,a*2,0,g,0,a*2,f,e}; 
-    int zeldaSeq[] = { 6,  3,12, 12,12,12,12,12,12, 1,12,12,12,12, 12, 12,  1,  8,  8,8,8,0,  4,8,4};
-    
-    for (int note = 0; note < 27; note++) {
-      int duration = 1000/zeldaSeq[note];
-      tone(BZZ, zelda[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++; // next song
-}
-
-// Example Melody
-int playExampleMelody() {
-    // Make sure both arrays are equal in size
-    int melody[] = {e,f,c,d,e,0,d,e}; // you can also go up or down an octave: a*2 or a/2 
-    int melodySeq[] = {8,16,16,8,8,8,8,8};
-    
-    // Write `note < the length of array` (Not happy with `sizeof()` ~ expect weird behavior)
-    for (int note = 0; note < 8; note++) {
-      int duration = 1000/melodySeq[note];
-      tone(BZZ, melody[note], duration); // Up or down an octave `melody[note]*2` or `melody[note]/2`
-      delay(duration * 1.30);
-    }
-    tune = 0; // restarts SETLIST
-}
-
-/*
-
-int playThisTune() {
-
-    int melody[] = {0};
-    int melodySeq[] = {0};
-    
-    for (int note = 0; note < X; note++) {
-      int duration = 1000/melodySeq[note];
-      tone(BZZ, melody[note], duration);
-      delay(duration * 1.30);
-    }
-    tune++;
-}
-
-*/

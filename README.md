@@ -17,7 +17,7 @@
 
 #### Tunes 🎶 
 
-After you have uploaded `particlejukebox.ino` to your Particle Argon, you will find "playTune" located in the **Functions** section in your [console](https://login.particle.io/login?redirect=https://console.particle.io/). (It's also handy to control your Particle Argon using the [app!](https://apps.apple.com/us/app/particle-iot/id991459054)) Enter any of the following to listen:
+After you have uploaded `particlejukebox.ino` to your Particle Argon, you will find "PlayTune" located in the **Functions** section in your [console](https://login.particle.io/login?redirect=https://console.particle.io/). (It's also handy to control your Particle Argon using the [app!](https://apps.apple.com/us/app/particle-iot/id991459054)) Enter any of the following to listen:
 
 - Pokémon
 - Kim Possible
@@ -34,29 +34,25 @@ Also, this is the play order each time the button is pressed. When you finally h
 
 #### Composition
 
-This template is already written as a comment at the very bottom of `particlejukebox.ino`.
+The `jukebox()` function requires the melody array `melody[]`, the melody sequence `melodySeq[]` and the size/length of the arrays. The key to getting your tune working correctly is to make sure `melody[]` & `melodySeq[]` are equal in size and specifying this size when calling `jukebox()`.
 
 ```C++
-int playThisTune() {
-
-    int melody[] = {0};
-    int melodySeq[] = {0};
+int jukebox(int melody [], int melodySeq [], int size) {
     
-    for (int note = 0; note < X; note++) {
+    for (int note = 0; note < size; note++) {
       int duration = 1000/melodySeq[note];
       tone(BZZ, melody[note], duration);
       delay(duration * 1.30);
     }
-    tune++;
+    tune++; // next tune
 }
 ```
+Example:
+```C++
+jukebox(pokemon, pokemonSeq, 3);
+```
 
-There are only three parts needed for alteration:
-- `int melody[]`
-- `int melodySeq[]`
-- `note < X` in your ***for*** loop
-
-`int melody[]` requires an arrangement of notes. For regular notes you will need to write in lowercase (`a`) and sharp notes in uppercase (`A`). 
+`melody` requires an arrangement of notes. For regular notes you will need to write in lowercase (`a`) and sharp notes in uppercase (`A`). 
 
 ```C++
 int pokemon[] = {d,f,g};
@@ -68,7 +64,7 @@ However, in some cases you might need one note at a higher or lower octave. Just
 int indianaJones[] = {d,D,f,A*2,d,f,D}; // (with a# one octave above)
 ```
 
-`int melodySeq` is used to create the rhythm to your melody. It can be a little tricky, but the numbers given to the array should make sense for someone familiar to playing an instrument. There are whole `1`, quarter `4`, eighth `8` etc. You will see a few variances in this sketch such as `6`, `12`, and `3`. This was intended to slow down the melody without altering the loop. Smooth Criminal is an example of this. (You can also play around with different time signatures, if you know what you're doing!) 
+`melodySeq` is used to create the rhythm to your melody. It can be a little tricky, but the numbers given to the array should make sense for someone familiar to playing an instrument. There are whole `1`, quarter `4`, eighth `8` etc. You will see a few variances in this sketch such as `6`, `12`, and `3`. This was intended to slow down the melody without altering the loop. Smooth Criminal is an example of this. (You can also play around with different time signatures, if you know what you're doing!) 
 
 You can also add pauses to your tune by adding `0`.
 
@@ -76,8 +72,6 @@ You can also add pauses to your tune by adding `0`.
 int mario[] =    {e,e,e,d,e,g,0,g/2};
 int marioSeq[] = {8,8,4,8,4,4,4,  4};
 ```
-
-The key to getting your tune working correctly is to make sure `melody[]` & `melodySeq[]` are equal in size. It's also important to replace `X` with the number of notes in your tune. I added this `X` for the Particle IDE to remind you. :)
 
 #### Additional Notes:
 
