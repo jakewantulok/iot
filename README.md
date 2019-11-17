@@ -6,7 +6,7 @@
 
 This is a fully functioning demo for **[The Grove Starter Kit for Particle Mesh](https://store.particle.io/products/grove-starter-kit)**. It also demonstrates how to use [`Particle.function()`](https://docs.particle.io/reference/device-os/firmware/photon/#cloud-functions). Just *⚡️flash* this to your Particle Argon and have fun! 
     
-### Requirements:
+#### Requirements:
 
 - One claimed Particle Argon
 - Grove shield for Particle Argon (with the argon in place)
