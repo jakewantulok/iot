@@ -245,10 +245,10 @@ int playMarioBros() {
 // No, the green dude is NOT Zelda
 int playLegendOfZelda() {
     
-    int zelda[] =    { a,0,e/2, 0,g/2, a, b, c, d, e, e, d, e, f, g,a*2,A*2,A*2,A*2,a*2,0,g,0,a*2,f,e}; 
-    int zeldaSeq[] = {12,6,  6,12, 12,12,12,12,12,12, 1,12,12,12,12, 12, 12,  1,  8,  8,8,8,0,  4,8,4};
+    int zelda[] =    { a,e/2,0,g/2, a, b, c, d, e, e, d, e, f, g,a*2,A*2,A*2,A*2,a*2,0,g,0,a*2,f,e}; 
+    int zeldaSeq[] = { 6,  6,6, 12,12,12,12,12,12, 1,12,12,12,12, 12, 12,  1,  8,  8,8,8,0,  4,8,4};
     
-    for (int note = 0; note < 25; note++) {
+    for (int note = 0; note < 27; note++) {
       int duration = 1000/zeldaSeq[note];
       tone(BZZ, zelda[note], duration);
       delay(duration * 1.30);
