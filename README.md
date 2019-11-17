@@ -56,7 +56,7 @@ There are only three parts needed for alteration:
 - `int melodySeq[]`
 - `note < X` in your ***for*** loop
 
-`int melody[]` requires an arrangement of notes. For regular notes you will need to write in lowercase (`a`) and a sharp in uppercase (`A`). 
+`int melody[]` requires an arrangement of notes. For regular notes you will need to write in lowercase (`a`) and sharp notes in uppercase (`A`). 
 
 ```C++
 int pokemon[] = {d,f,g};
@@ -68,7 +68,7 @@ However, in some cases you might need one note at a higher or lower octave. Just
 int indianaJones[] = {d,D,f,A*2,d,f,D}; // (with a# one octave above)
 ```
 
-`int melodySeq` is used to create the rhythm to your melody. It can be a little tricky, but the numbers given to the array should make sense for someone familiar to playing an instrument. There are whole `1`, quarter `4`, eighth `8` etc. You will see a few variances in this sketch such as `6`, `12`, and `3`. This was intended to slow down the melody without altering the loop. Smooth Criminal is an example of this. (You can also play around with different time signatures, if you know what you're doing) 
+`int melodySeq` is used to create the rhythm to your melody. It can be a little tricky, but the numbers given to the array should make sense for someone familiar to playing an instrument. There are whole `1`, quarter `4`, eighth `8` etc. You will see a few variances in this sketch such as `6`, `12`, and `3`. This was intended to slow down the melody without altering the loop. Smooth Criminal is an example of this. (You can also play around with different time signatures, if you know what you're doing!) 
 
 You can also add pauses to your tune by adding `0`.
 
@@ -77,7 +77,7 @@ int mario[] =    {e,e,e,d,e,g,0,g/2};
 int marioSeq[] = {8,8,4,8,4,4,4,  4};
 ```
 
-The key to getting your tune working correctly is to make sure `melody[]` & `melody[]` are equal in size. It's also important to replace `X` with the number of notes in your tune. I added this `X` for the Particle IDE to remind you. :)
+The key to getting your tune working correctly is to make sure `melody[]` & `melodySeq[]` are equal in size. It's also important to replace `X` with the number of notes in your tune. I added this `X` for the Particle IDE to remind you. :)
 
 #### Additional Notes:
 
