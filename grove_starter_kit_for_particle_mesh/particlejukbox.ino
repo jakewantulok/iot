@@ -57,7 +57,7 @@ int G = 3322.44;
     Tune 6 = "Indiana Jones"
     Tune 7 = "Mario Bros"
     Tune 8 = "Legend of Zelda"
-    Tune 9 = "Example Melody" (with comments)
+    Tune 9 = "Door Knock"
 */
 
 int tune = 0; // default tune for first press
