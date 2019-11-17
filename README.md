@@ -28,9 +28,9 @@ After you have uploaded `particlejukebox.ino` to your Particle Argon, you will f
 - Indiana Jones
 - Mario Bros
 - Legend of Zelda
-- Example Melody
+- Door Knock
 
-Also, this is the play order each time the button is pressed. When you finally hear the Example Melody, it will reset to the first tune.
+Also, this is the play order each time the button is pressed. When you finally hear the "Door Knock" melody, it will reset to the first tune. If you ever mistype when calling the Particle Function, the "Door Knock" melody will also play for you. 
 
 #### Composition
 
