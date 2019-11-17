@@ -17,7 +17,7 @@
 
 #### Tunes 🎶 
 
-After you have uploaded `particlejukebox.ino` to your Particle Argon, in the console you will find "playTune" in the **Functions** section. Type in any of the following to listen.
+After you have uploaded `particlejukebox.ino` to your Particle Argon, you will find "playTune" located in the **Functions** section in the [console](https://login.particle.io/login?redirect=https://console.particle.io/). (It's also handy to control your Particle Argon using the [app!](https://apps.apple.com/us/app/particle-iot/id991459054)) Enter any of the following to listen:
 
 - Pokêmon
 - Kim Possible
@@ -30,13 +30,13 @@ After you have uploaded `particlejukebox.ino` to your Particle Argon, in the con
 - Legend of Zelda
 - Example Melody
 
-This is also the play order each time the button is pressed. When you finally hear the Example Melody, it will reset to the first tune.
+Also, this is the play order each time the button is pressed. When you finally hear the Example Melody, it will reset to the first tune.
 
 #### Additional Notes:
 
-This was written with the button remaining connected. Once removed, you will immediately hear every tune played in a continuous loop.
+This was written with the button connected. Once removed, you will immediately hear every tune played in a continuous loop.
     
-I highly recommend commenting out the following:
+I highly recommend commenting out the following if you wish to control your Particle Argon using only the Particle Cloud Function:
 - `#define BTN D2` at the top
 - `pinMode(BTN, INPUT);` in your `void setup()`
 - Everything inside `void loop()`
