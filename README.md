@@ -1,7 +1,5 @@
 # The Internet of Things ✨
 
-I'm stepping into new territory here.
-
 ## Grove Starter Kit for Particle Mesh 🌱
 
 ### Particle Jukebox 🎹
@@ -18,8 +16,6 @@ This also demonstrates how to use [`Particle.function()`](https://docs.particle.
         - Button ~ plugged into grove shield (D2)
         - Buzzer ~ plugged into grove shield (D4)
 - USB Cable & Internet! (Duh)
-
-Note! 
 
 #### Additional Notes:
 
