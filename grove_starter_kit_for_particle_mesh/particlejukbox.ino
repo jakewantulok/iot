@@ -33,7 +33,7 @@
 ////////////////// 🎹 //////////////////
 
 // Scale = 440hz * 4
-// lowercase = natural, uppercase = sharp
+// lowercase = regular, uppercase = sharp
 int a = 1760;
 int A = 1864.66;
 int b = 1975.54;
