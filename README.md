@@ -8,9 +8,9 @@
 
 For a better understanding of how this works, I have three versions of Particle Jukebox to select from:
 
-- "Button Only" version using only the button `particlejukebox_btnonly.ino`
-- "Cloud Only Version" using only `Particle.function()` (See `particlejukebox_cldonly.ino`)
-- "Full" Version using both the button as well as `Particle.function()` (See `particlejukebox.ino`)
+- **"Button Only"** version using only the button (See `particlejukebox_btnonly.ino`)
+- **"Cloud Only"** version using only `Particle.function()` (See `particlejukebox_cldonly.ino`)
+- **"Full"** version using *both* the button as well as `Particle.function()` (See `particlejukebox.ino`)
 
 #### Requirements:
 
