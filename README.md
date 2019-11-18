@@ -4,8 +4,14 @@
 
 ### Particle Jukebox 🎹
 
-`particlejukebox.ino` is a fully functioning demo for **[The Grove Starter Kit for Particle Mesh](https://store.particle.io/products/grove-starter-kit)**. It also demonstrates how to use [`Particle.function()`](https://docs.particle.io/reference/device-os/firmware/photon/#cloud-functions). Just *flash ⚡️* this sketch to your Particle Argon and see how it works! 
-    
+`particlejukebox.ino` is a fully functioning demo for **[The Grove Starter Kit for Particle Mesh](https://store.particle.io/products/grove-starter-kit)**. It also demonstrates how to use [`Particle.function()`](https://docs.particle.io/reference/device-os/firmware/photon/#cloud-functions). Just *flash ⚡️* this sketch to your Particle Argon and see how it works!
+
+For a better understanding of how this works, I have three versions of Particle Jukebox to select from:
+
+- "Button Only" version using only the button `particlejukebox_btnonly.ino`
+- "Cloud Only Version" using only `Particle.function()` (See `particlejukebox_cldonly.ino`)
+- "Full" Version using both the button as well as `Particle.function()` (See `particlejukebox.ino`)
+
 #### Requirements:
 
 - One claimed Particle Argon
