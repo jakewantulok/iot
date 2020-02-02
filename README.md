@@ -40,12 +40,11 @@ Also, this is the play order each time the button is pressed. When you finally h
 
 #### Composition
 
-The `jukebox()` function requires the melody array `melody[]`, the melody sequence `melodySeq[]` and the size/length of the arrays. The key to getting your tune working correctly is to make sure `melody[]` & `melodySeq[]` are equal in size and specifying this size when calling `jukebox()`.
+The `jukebox()` function requires the melody array `melody[]`, the melody sequence `melodySeq[]` and the length of the arrays. The key to getting your tune working correctly is to make sure `melody[]` & `melodySeq[]` are equal in length and specifying this length when calling `jukebox()`.
 
 ```C++
-int jukebox(int melody [], int melodySeq [], int size) {
-    
-    for (int note = 0; note < size; note++) {
+int jukebox(int melody [], int melodySeq [], int length) {
+    for (int note = 0; note < length; note++) {
       int duration = 1000/melodySeq[note];
       tone(BZZ, melody[note], duration);
       delay(duration * 1.30);
@@ -53,12 +52,34 @@ int jukebox(int melody [], int melodySeq [], int size) {
     tune++; // next tune
 }
 ```
+
+**Equal Temperament (A 440Hz x 4)**
+
+`melody` requires an arrangement of notes. For regular notes you will need to write in lowercase (`a`) and sharp notes in uppercase (`A`). Keep in mind `B` (B#) and `E` (E#) are both invalid.
+
+| Code | Note  | Hz          |
+| ---- | ----- | ----------- |
+| 0    | Pause | 0           |
+| a    | A     | 1760        |
+| A    | A#    | 1864.66     |
+| b    | B     | 1975.54     |
+| B    | *NA*  | **INVALID** |
+| c    | C     | 2093        |
+| C    | C#    | 2217.46     |
+| d    | D     | 2349.32     |
+| D    | D#    | 2489.02     |
+| e    | E     | 2637.02     |
+| E    | *NA*  | **INVALID** |
+| f    | F     | 2793.82     |
+| F    | F#    | 2959.96     |
+| g    | G     | 3135.96     |
+| G    | G#    | 3322.44     |
+
+
 Example:
 ```C++
 jukebox(pokemon, pokemonSeq, 3);
 ```
-
-`melody` requires an arrangement of notes. For regular notes you will need to write in lowercase (`a`) and sharp notes in uppercase (`A`). 
 
 ```C++
 int pokemon[] = {d,f,g};
@@ -85,3 +106,7 @@ This was written with the button connected. Once the button has been removed, yo
 - `#define BTN D2` at the top
 - `pinMode(BTN, INPUT);` in your `void setup()`
 - Everything inside `void loop()`
+
+Originally I had the the function to get the length without counting, but ran into strange behavior ~ best to count. (I'm learning C++ as I go :)
+
+As a suggestion, if you wish to compose a full song, I would segment them such as "Chorus" and "Verse".

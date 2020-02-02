@@ -91,9 +91,9 @@ int doorKnockSeq[] = {8,16,16,8,8,8,8,8};
 
 ////////////////// JUKEBOX //////////////////
 
-int jukebox(int melody [], int melodySeq [], int size) {
+int jukebox(int melody [], int melodySeq [], int length) {
     
-    for (int note = 0; note < size; note++) {
+    for (int note = 0; note < length; note++) {
       int duration = 1000/melodySeq[note];
       tone(BZZ, melody[note], duration);
       delay(duration * 1.30);
